@@ -1,18 +1,11 @@
 # Ignore all
 *
 
-# Except these folders:
-!.oh-my-zsh/
-!.oh-my-zsh/custom/
-!.oh-my-zsh/custom/*
-
 # and files:
 !README.md
 !/.gitignore
 !/.gitmodules
-!/.zshrc
 !/.vimrc
+!/.bashrc
 !/.aliases
-!/.tmux.conf
-!/.inputrc
 
