@@ -12,22 +12,11 @@ call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-surround'
 call plug#end()
 
-" My settings
-colorscheme peachpuff
-
-" Some basics
-filetype plugin indent on
-syntax on
+" Your settings
 set encoding=utf-8
-set clipboard^=unnamed,unnamedplus
 set number
 set relativenumber
 set hlsearch
-set softtabstop=2
-set shiftwidth=2
-set showcmd " display incomplete commands
-set ruler
-set et
 set title
 
 " Turn backup off, since most stuff is in SVN, git et.c anyway...
@@ -35,6 +24,10 @@ set nobackup
 set nowritebackup
 set nowb
 set noswapfile
+
+" Visual
+syntax on
+colorscheme peachpuff
 
 " Miscellaneous
 nmap <silent> // :nohlsearch<CR>
