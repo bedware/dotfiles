@@ -1,11 +1,1 @@
-# Network
-alias p8='ping 8.8.8.8'
-
-# Exa
-alias ls='exa'
-alias l='exa -lah'
-alias lg='exa -lah --git'
-
-# Other
-alias grep='grep'
 alias uao='function _uao(){ unzip $1 && idea $(basename $1 .zip); };_uao'
