@@ -4,6 +4,7 @@
 # and files:
 !README.md
 !/.gitignore
+!/install.sh
 !/.gitmodules
 !/.vimrc
 !/.aliases
