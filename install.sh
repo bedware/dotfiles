@@ -1,26 +1,26 @@
 #!/bin/bash
-echo We are setting up
+echo 'We are setting up'
 cd ~
 git init && \
 git remote add origin https://github.com/bedware/dotfiles.git && \
 git pull origin master && \
 git submodule update --init -j 2 && \
 chmod 0600 .ssh/id_*
-echo '[0/3] Common things done'
+echo 'Common things done'
 
 sudo apt install -y zsh
-echo Zsh installed
+echo 'Zsh installed'
 
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-echo '[1/3] Installing Oh-my-zsh done'
+curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | bash -s -- --unattended
+echo 'Installing Oh-my-zsh done'
 
 curl -fsSL https://starship.rs/install.sh | bash -s -- -y
 echo 'eval "$(starship init zsh)"' >> ~/.zshrc
-echo '[2/3] Installing Starship done'
+echo 'Installing Starship done'
 
-echo [3/3] Done
 echo 'Post-step: run in the console command below:'
 echo 'chsh -s $(which zsh)'
+echo 'Then relogin'
 # zsh
 
 # Get the IP address of the host from /etc/resolv.conf
