@@ -49,18 +49,10 @@ installing_starship() {
     echo 'eval "$(starship init zsh)"' >> ~/.zshrc
 }
 
-setup_wsl() {
-    echo 'Something for wsl'
-    # # Get the IP address of the host from /etc/resolv.conf
-    # export WSL_HOST=$(tail -1 /etc/resolv.conf | cut -d' ' -f2)
-
-    # # Set the display path
-    # export DISPLAY=$WSL_HOST:0.0
-}
-
 post_step() {
     echo "${RED}Switching to zsh${RESET}"
-    eval 'chsh -s $(which zsh)'
+    sudo cat /etc/shells
+    chsh -s $(which zsh)
     # zsh
 }
 
@@ -70,7 +62,6 @@ main() {
     installing_zsh
     installing_oh_my_zsh
     installing_starship
-    setup_wsl
     post_step
 }
 
