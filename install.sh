@@ -28,13 +28,23 @@ log() {
 
 setup_dotfiles() {
     log "Installing Dotfiles"
+    SSH_INSTALL=yes
+    printf "${YELLOW}Do you want to skip ssh keys installation? [Y/n]${RESET} "
+	read opt
+	case $opt in
+		y*|Y*|"") echo "Going to next step..."; SSH_INSTALL=no ;;
+		n*|N*) echo "Ssh keys are going to install" ;;
+		*) echo "Invalid choice. Ssh keys installation will be skipped."; SSH_INSTALL=no ;;
+	esac
     cd ~
     rm .zshrc .oh-my-zsh/custom/example.zsh && \
     git init && \
     git remote add origin https://github.com/bedware/dotfiles.git && \
-    git pull origin master && \
-    git submodule update --init -j 2 && \
-    chmod 0600 .ssh/id_*
+    git pull origin master
+    if [ SSH_INSTALL -eq yes ]; then
+        git submodule update --init -j 2 && \
+        chmod 0600 .ssh/id_*
+    fi
 }
 
 install_zsh() {
@@ -58,11 +68,11 @@ install_brew() {
     echo 'eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)' >> /home/$USER/.zprofile
     eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
     sudo apt update
-    sudo apt install build-essential -y
+    sudo apt install build-essential jq -y
 }
 
 install_brew_utils() {
-    brew install exa tldr
+    brew install exa tldr hub
 }
 
 setup_default_shell() {
