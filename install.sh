@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Show extra debug info
-set -x
-
 enable_colors() {
 	# Only use colors if connected to a terminal
 	if [ -t 1 ]; then
@@ -29,7 +26,7 @@ log() {
 setup_dotfiles() {
     log "Installing Dotfiles"
     SSH_INSTALL=yes
-    printf "${YELLOW}Do you want to skip ssh keys installation? [Y/n]${RESET}"
+    printf "${YELLOW}Do you want to skip ssh keys installation? [Y/n]${RESET} "
 	read o
 	case $o in
 		y*|Y*|"") echo "Going to next step..."; SSH_INSTALL=no ;;
