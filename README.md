@@ -8,6 +8,7 @@ Collections of dotfiles with a simple install script. Installation on fresh mach
 - starship prompt
 - brew
 - some utils:
+    - jq
     - exa
     - tldr
 - (Optional) ssh keys installation (need to change .gitmodule)
