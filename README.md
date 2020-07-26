@@ -8,5 +8,5 @@
 # Installation
 Run in console:
 ```
-curl -s https://raw.githubusercontent.com/bedware/dotfiles/master/install.sh | bash
+curl -H 'Cache-Control: no-cache' -s https://raw.githubusercontent.com/bedware/dotfiles/master/install.sh | bash
 ```
