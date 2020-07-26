@@ -1,6 +1,11 @@
 # Ignore all
 *
 
+# Except these folders:
+!/.oh-my-zsh/
+!/.oh-my-zsh/custom/
+!/.oh-my-zsh/custom/*
+
 # and files:
 !/install.sh
 !/README.md
