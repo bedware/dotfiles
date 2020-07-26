@@ -41,8 +41,6 @@ setup_dotfiles() {
     if [ $SSH_INSTALL = yes ]; then
         git submodule update --init -j 2 && \
         chmod 0600 .ssh/id_*
-    else
-        rm .gitmodules
     fi
 }
 
