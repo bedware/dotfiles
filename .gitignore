@@ -2,9 +2,10 @@
 *
 
 # and files:
-!README.md
-!/.gitignore
 !/install.sh
+!/README.md
+!/.zshrc
+!/.gitignore
 !/.gitmodules
 !/.vimrc
 !/.aliases

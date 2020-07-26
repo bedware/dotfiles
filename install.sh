@@ -22,9 +22,12 @@ setup_color() {
 	fi
 }
 
-setup_dotfiles () {
-    echo "${RED}We are setting up${RESET}"
-    echo "${RED}Installing Dotfiles${RESET}"
+log() {
+    echo ${RED}"$@"${RESET}
+}
+
+setup_dotfiles() {
+    log "Installing Dotfiles"
     cd ~
     git init && \
     git remote add origin https://github.com/bedware/dotfiles.git && \
@@ -34,29 +37,28 @@ setup_dotfiles () {
 }
 
 installing_zsh() {
-    echo "${RED}Installing zsh${RESET}"
+    log "Installing zsh"
     sudo apt install -y zsh
 }
 
 installing_oh_my_zsh() {
-    echo "${RED}Installing oh-my-zsh${RESET}"
+    log "Installing oh-my-zsh"
     curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | bash -s -- --unattended
 }
 
 installing_starship() {
-    echo "${RED}Installing Starship${RESET}"
+    log "Installing Starship"
     curl -fsSL https://starship.rs/install.sh | bash -s -- -y
-    echo 'eval "$(starship init zsh)"' >> ~/.zshrc
+    log 'eval "$(starship init zsh)"' >> ~/.zshrc
 }
 
 setup_default_shell() {
-    echo "${RED}Settings zsh default shell${RESET}"
+    log "Settings zsh default shell"
     sudo chsh $USER -s $(which zsh)
 }
 
 post_step() {
-    echo "${RED}Setup complete! Please relogin.${RESET}"
-    logout
+    log "Setup complete! Please relogin."
 }
 
 main() {
