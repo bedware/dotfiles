@@ -29,6 +29,7 @@ log() {
 setup_dotfiles() {
     log "Installing Dotfiles"
     cd ~
+    rm .zshrc && \
     git init && \
     git remote add origin https://github.com/bedware/dotfiles.git && \
     git pull origin master && \
