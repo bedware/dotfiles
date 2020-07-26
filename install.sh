@@ -3,9 +3,28 @@
 # Show extra debug info
 set -e
 
+setup_color() {
+	# Only use colors if connected to a terminal
+	if [ -t 1 ]; then
+		RED=$(printf '\033[31m')
+		GREEN=$(printf '\033[32m')
+		YELLOW=$(printf '\033[33m')
+		BLUE=$(printf '\033[34m')
+		BOLD=$(printf '\033[1m')
+		RESET=$(printf '\033[m')
+	else
+		RED=""
+		GREEN=""
+		YELLOW=""
+		BLUE=""
+		BOLD=""
+		RESET=""
+	fi
+}
+
 setup_dotfiles () {
-    echo 'We are setting up'
-    echo 'Installing Dotfiles'
+    echo '${RED}We are setting up${RESET}'
+    echo '${RED}Installing Dotfiles${RESET}'
     cd ~
     git init && \
     git remote add origin https://github.com/bedware/dotfiles.git && \
@@ -15,17 +34,17 @@ setup_dotfiles () {
 }
 
 installing_zsh() {
-    echo 'Installing zsh'
+    echo '${RED}Installing zsh${RESET}'
     sudo apt install -y zsh
 }
 
 installing_oh_my_zsh() {
-    echo 'Installing oh-my-zsh'
+    echo '${RED}Installing oh-my-zsh${RESET}'
     curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | bash -s -- --unattended
 }
 
 installing_starship() {
-    echo 'Installing Starship'
+    echo '${RED}Installing Starship${RESET}'
     curl -fsSL https://starship.rs/install.sh | bash -s -- -y
     echo 'eval "$(starship init zsh)"' >> ~/.zshrc
 }
@@ -40,12 +59,13 @@ setup_wsl() {
 }
 
 post_step() {
-    echo 'Switching to zsh'
-    chsh -s /bin/zsh 
+    echo '${RED}Switching to zsh${RESET}'
+    chsh -s $(which zsh)
     # zsh
 }
 
 main() {
+    setup_color
     setup_dotfiles
     installing_zsh
     installing_oh_my_zsh
