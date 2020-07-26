@@ -93,7 +93,7 @@ main() {
     enable_colors
     install_zsh
     install_oh_my_zsh
-    install_starship
+    # install_starship
     setup_dotfiles
     install_brew
     install_utils
