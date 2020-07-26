@@ -60,7 +60,7 @@ install_oh_my_zsh() {
 install_starship() {
     log "Installing Starship"
     curl -fsSL https://starship.rs/install.sh | bash -s -- -y
-    log 'eval "$(starship init zsh)"' >> ~/.zshrc
+    echo 'eval "$(starship init zsh)"' >> ~/.zshrc
 }
 
 install_brew() {
@@ -68,11 +68,12 @@ install_brew() {
     echo 'eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)' >> /home/$USER/.zprofile
     eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
     sudo apt update
-    sudo apt install build-essential jq -y
+    sudo apt install build-essential -y
 }
 
-install_brew_utils() {
+install_utils() {
     brew install exa tldr hub
+    sudo apt install jq -y
 }
 
 setup_default_shell() {
@@ -91,7 +92,7 @@ main() {
     install_starship
     setup_dotfiles
     install_brew
-    install_brew_utils
+    install_utils
     setup_default_shell
     post_step
 }
