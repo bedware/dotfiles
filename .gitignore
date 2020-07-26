@@ -9,9 +9,16 @@
 # and files:
 !/install.sh
 !/README.md
+# shell
 !/.zshrc
-!/.gitignore
-!/.gitmodules
-!/.vimrc
 !/.aliases
+# git
+!/.gitconfig
+!/.gitconfig_local
+!/.gitignore
+!/.gitignore_global
+!/.gitmodules
+# editors
+!/.vimrc
+!/.ideavimrc
 
