@@ -15,7 +15,7 @@ echo `zsh --version` installed
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 echo 'Installing Oh-my-zsh done'
 
-curl -fsSL https://starship.rs/install.sh | bash
+curl -fsSL https://starship.rs/install.sh | bash -s --force
 echo 'eval "$(starship init zsh)"' >> ~/.zshrc
 echo 'Installing Starship done'
 
