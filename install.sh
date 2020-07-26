@@ -31,18 +31,18 @@ installing_starship() {
 }
 
 setup_wsl() {
+    echo 'Something for wsl'
     # # Get the IP address of the host from /etc/resolv.conf
     # export WSL_HOST=$(tail -1 /etc/resolv.conf | cut -d' ' -f2)
 
     # # Set the display path
     # export DISPLAY=$WSL_HOST:0.0
-    echo 'Something for wsl'
 }
 
 post_step() {
     echo 'Switching to zsh'
-    # chsh -s /bin/zsh 
-    zsh
+    chsh -s /bin/zsh 
+    # zsh
 }
 
 main() {
