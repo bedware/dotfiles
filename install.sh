@@ -53,6 +53,18 @@ install_starship() {
     log 'eval "$(starship init zsh)"' >> ~/.zshrc
 }
 
+install_brew() {
+    curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh | bash
+    echo 'eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)' >> /home/$USER/.zprofile
+    eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+    sudo apt update
+    sudo apt install build-essential -y
+}
+
+install_brew_utils() {
+    brew install exa tldr
+}
+
 setup_default_shell() {
     log "Settings zsh default shell"
     sudo chsh $USER -s $(which zsh)
@@ -68,6 +80,8 @@ main() {
     install_oh_my_zsh
     install_starship
     setup_dotfiles
+    install_brew
+    install_brew_utils
     setup_default_shell
     post_step
 }
