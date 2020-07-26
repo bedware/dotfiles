@@ -20,8 +20,8 @@ echo 'eval "$(starship init zsh)"' >> ~/.zshrc
 eval "$(starship init zsh)"
 echo 'Installing Starship done'
 
-$(which zsh)
 echo Done
+zsh
 
 # Get the IP address of the host from /etc/resolv.conf
 # export WSL_HOST=$(tail -1 /etc/resolv.conf | cut -d' ' -f2)
