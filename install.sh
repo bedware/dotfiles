@@ -30,8 +30,8 @@ setup_dotfiles() {
     log "Installing Dotfiles"
     SSH_INSTALL=yes
     printf "${YELLOW}Do you want to skip ssh keys installation? [Y/n]${RESET}"
-	read OPTION
-	case $OPTION in
+	read o
+	case $o in
 		y*|Y*|"") echo "Going to next step..."; SSH_INSTALL=no ;;
 		n*|N*) echo "Ssh keys are going to install" ;;
 		*) echo "Invalid choice. Ssh keys installation will be skipped."; SSH_INSTALL=no ;;
