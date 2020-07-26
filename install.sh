@@ -49,9 +49,14 @@ installing_starship() {
     echo 'eval "$(starship init zsh)"' >> ~/.zshrc
 }
 
-post_step() {
+setup_default_shell() {
     echo "${RED}Settings zsh default shell${RESET}"
     sudo chsh $USER -s $(which zsh)
+}
+
+post_step() {
+    echo "${RED}Setup complete! Please relogin.${RESET}"
+    exit
 }
 
 main() {
@@ -60,8 +65,8 @@ main() {
     installing_zsh
     installing_oh_my_zsh
     installing_starship
+    setup_default_shell
     post_step
-    echo Setup complete! Please relogin.
 }
 
 main "$@"
