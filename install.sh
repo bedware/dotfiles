@@ -25,6 +25,11 @@ log() {
 
 setup_dotfiles() {
     log "Installing Dotfiles"
+    cd ~
+    rm .zshrc .oh-my-zsh/custom/example.zsh
+    git init && \
+    git remote add origin https://github.com/bedware/dotfiles.git && \
+    git pull origin master
     SSH_INSTALL=yes
     printf "${YELLOW}Do you want to skip ssh keys installation? [Y/n]${RESET} "
 	read o
@@ -33,11 +38,6 @@ setup_dotfiles() {
 		n*|N*) echo "Ssh keys are going to install" ;;
 		*) echo "Invalid choice. Ssh keys installation will be skipped."; SSH_INSTALL=no ;;
 	esac
-    cd ~
-    rm .zshrc .oh-my-zsh/custom/example.zsh
-    git init && \
-    git remote add origin https://github.com/bedware/dotfiles.git && \
-    git pull origin master
     if [ $SSH_INSTALL = yes ]; then
         git submodule update --init -j 2 && \
         chmod 0600 .ssh/id_*
@@ -88,10 +88,10 @@ main() {
     install_oh_my_zsh
     install_starship
     setup_dotfiles
-    # install_brew
-    # install_utils
-    # setup_default_shell
-    # post_step
+    install_brew
+    install_utils
+    setup_default_shell
+    post_step
 }
 
 main "$@"
