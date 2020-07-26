@@ -23,5 +23,5 @@ Collections of dotfiles with a simple install script. Installation on fresh mach
 ## Installation
 Run in console and follow instructions:
 ```
-curl -s https://raw.githubusercontent.com/bedware/dotfiles/master/install.sh | bash
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/bedware/dotfiles/master/install.sh)"
 ```

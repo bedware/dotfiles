@@ -34,17 +34,15 @@ setup_dotfiles() {
 		*) echo "Invalid choice. Ssh keys installation will be skipped."; SSH_INSTALL=no ;;
 	esac
     cd ~
-    echo pwd
-    pwd
-    rm .zshrc .oh-my-zsh/custom/example.zsh && \
+    rm .zshrc .oh-my-zsh/custom/example.zsh
     git init && \
     git remote add origin https://github.com/bedware/dotfiles.git && \
     git pull origin master
     if [ $SSH_INSTALL = yes ]; then
-        echo pwd
-        pwd
         git submodule update --init -j 2 && \
         chmod 0600 .ssh/id_*
+    else
+        rm .gitmodules
     fi
 }
 
