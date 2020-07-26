@@ -23,8 +23,8 @@ setup_color() {
 }
 
 setup_dotfiles () {
-    echo '${RED}We are setting up${RESET}'
-    echo '${RED}Installing Dotfiles${RESET}'
+    echo "${RED}We are setting up${RESET}"
+    echo "${RED}Installing Dotfiles${RESET}"
     cd ~
     git init && \
     git remote add origin https://github.com/bedware/dotfiles.git && \
@@ -34,17 +34,17 @@ setup_dotfiles () {
 }
 
 installing_zsh() {
-    echo '${RED}Installing zsh${RESET}'
+    echo "${RED}Installing zsh${RESET}"
     sudo apt install -y zsh
 }
 
 installing_oh_my_zsh() {
-    echo '${RED}Installing oh-my-zsh${RESET}'
+    echo "${RED}Installing oh-my-zsh${RESET}"
     curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | bash -s -- --unattended
 }
 
 installing_starship() {
-    echo '${RED}Installing Starship${RESET}'
+    echo "${RED}Installing Starship${RESET}"
     curl -fsSL https://starship.rs/install.sh | bash -s -- -y
     echo 'eval "$(starship init zsh)"' >> ~/.zshrc
 }
@@ -59,8 +59,8 @@ setup_wsl() {
 }
 
 post_step() {
-    echo '${RED}Switching to zsh${RESET}'
-    chsh -s $(which zsh)
+    echo "${RED}Switching to zsh${RESET}"
+    eval 'chsh -s $(which zsh)'
     # zsh
 }
 
