@@ -23,8 +23,7 @@ echo 'eval "$(starship init zsh)"' >> ~/.zshrc
 echo 'Installing Starship'
 
 echo 'Switching to zsh'
-chsh -s $(which zsh)
-$(which zsh)
+chsh -s $(which zsh) && $(which zsh)
 
 # Get the IP address of the host from /etc/resolv.conf
 # export WSL_HOST=$(tail -1 /etc/resolv.conf | cut -d' ' -f2)
