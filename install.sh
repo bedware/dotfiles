@@ -52,6 +52,7 @@ installing_starship() {
 post_step() {
     echo "${RED}Switching to zsh${RESET}"
     sudo cat /etc/shells
+    echo "$(which zsh)"
     chsh -s $(which zsh)
     # zsh
 }
