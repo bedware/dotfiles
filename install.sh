@@ -36,6 +36,7 @@ setup_wsl() {
 
     # # Set the display path
     # export DISPLAY=$WSL_HOST:0.0
+    echo 'Something for wsl'
 }
 
 post_step() {
