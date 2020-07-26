@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Show extra debug info
-set -e
+set -x
 
 enable_colors() {
 	# Only use colors if connected to a terminal
