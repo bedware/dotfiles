@@ -6,20 +6,21 @@ git remote add origin https://github.com/bedware/dotfiles.git && \
 git pull origin master && \
 git submodule update --init -j 2 && \
 chmod 0600 .ssh/id_*
-echo 'Common things done'
+echo '[0/3] Common things done'
 
 sudo apt install -y zsh
-chsh -s $(which zsh)
-echo `zsh --version` installed
+echo Zsh installed
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-echo 'Installing Oh-my-zsh done'
+echo '[1/3] Installing Oh-my-zsh done'
 
 curl -fsSL https://starship.rs/install.sh | bash -s -- -y
 echo 'eval "$(starship init zsh)"' >> ~/.zshrc
-echo 'Installing Starship done'
+echo '[2/3] Installing Starship done'
 
-echo Done
+echo [3/3] Done
+echo 'Post-step: run in the console command below:'
+echo 'chsh -s $(which zsh)'
 # zsh
 
 # Get the IP address of the host from /etc/resolv.conf
