@@ -56,7 +56,7 @@ setup_default_shell() {
 
 post_step() {
     echo "${RED}Setup complete! Please relogin.${RESET}"
-    exit
+    logout
 }
 
 main() {
