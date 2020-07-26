@@ -3,7 +3,7 @@
 # Show extra debug info
 set -e
 
-setup_color() {
+enable_colors() {
 	# Only use colors if connected to a terminal
 	if [ -t 1 ]; then
 		RED=$(printf '\033[31m')
@@ -36,17 +36,17 @@ setup_dotfiles() {
     chmod 0600 .ssh/id_*
 }
 
-installing_zsh() {
+install_zsh() {
     log "Installing zsh"
     sudo apt install -y zsh
 }
 
-installing_oh_my_zsh() {
+install_oh_my_zsh() {
     log "Installing oh-my-zsh"
-    curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | bash -s -- --unattended
+    curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | bash -s -- --unattended --keep-zshrc
 }
 
-installing_starship() {
+install_starship() {
     log "Installing Starship"
     curl -fsSL https://starship.rs/install.sh | bash -s -- -y
     log 'eval "$(starship init zsh)"' >> ~/.zshrc
@@ -62,11 +62,11 @@ post_step() {
 }
 
 main() {
-    setup_color
+    enable_colors
+    install_zsh
+    install_oh_my_zsh
+    install_starship
     setup_dotfiles
-    installing_zsh
-    installing_oh_my_zsh
-    installing_starship
     setup_default_shell
     post_step
 }
