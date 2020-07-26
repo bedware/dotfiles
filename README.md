@@ -8,5 +8,5 @@
 # Installation
 Run in console:
 ```
-./install.sh
+curl -s https://raw.githubusercontent.com/bedware/dotfiles/master/install.sh | bash
 ```
