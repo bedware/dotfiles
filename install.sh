@@ -29,9 +29,9 @@ log() {
 setup_dotfiles() {
     log "Installing Dotfiles"
     SSH_INSTALL=yes
-    printf "${YELLOW}Do you want to skip ssh keys installation? [Y/n]${RESET} "
-	read opt
-	case $opt in
+    printf "${YELLOW}Do you want to skip ssh keys installation? [Y/n]${RESET}"
+	read OPTION
+	case $OPTION in
 		y*|Y*|"") echo "Going to next step..."; SSH_INSTALL=no ;;
 		n*|N*) echo "Ssh keys are going to install" ;;
 		*) echo "Invalid choice. Ssh keys installation will be skipped."; SSH_INSTALL=no ;;
@@ -93,12 +93,12 @@ main() {
     enable_colors
     install_zsh
     install_oh_my_zsh
-    # install_starship
+    install_starship
     setup_dotfiles
-    install_brew
-    install_utils
-    setup_default_shell
-    post_step
+    # install_brew
+    # install_utils
+    # setup_default_shell
+    # post_step
 }
 
 main "$@"
