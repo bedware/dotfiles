@@ -10,7 +10,6 @@ echo 'Common things done'
 
 sudo apt install -y zsh
 chsh -s $(which zsh)
-$(which zsh)
 echo `zsh --version` installed
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -21,6 +20,7 @@ echo 'eval "$(starship init zsh)"' >> ~/.zshrc
 eval "$(starship init zsh)"
 echo 'Installing Starship done'
 
+$(which zsh)
 echo Done
 
 # Get the IP address of the host from /etc/resolv.conf
