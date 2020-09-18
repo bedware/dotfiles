@@ -22,6 +22,12 @@ set commentary
 " Shortcuts
 """"""""""""
 
+" Disabling things
+noremap <Up> <nop>
+noremap <Down> <nop>
+noremap <Left> <nop>
+noremap <Right> <nop>
+
 " Alias for exiting
 " noremap <Esc> <nop>
 " vnoremap jk <ESC>
