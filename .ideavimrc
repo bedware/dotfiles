@@ -59,7 +59,7 @@ nmap <leader><leader> :action Switcher<CR>
 nnoremap F :action AceAction<cr>
 nmap <S-h> :action Back<CR>
 nmap <S-l> :action Forward<CR>
-nmap <C-l> :action GotoImplementation<CR>
+nmap <C-S-]> :action GotoImplementation<CR>
 
 " Previous/Next method
 nnoremap [m :action MethodUp<cr>
@@ -82,9 +82,8 @@ vmap <leader>P "+P
 nmap <leader>r :action $Redo<CR>
 nmap <leader>k :action Vcs.QuickListPopupAction<CR>
 nmap <leader>u :action GotoSuperMethod<CR>
-nmap <leader>f :action ReformatCode<CR>
 nmap <leader>a :action GotoAction<CR>
-nmap <leader>b :action Back<CR>
+nmap <leader>f :action ReformatCode<CR>
 
 " Close
 nmap <leader>x :action CloseContent<CR>
