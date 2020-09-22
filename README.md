@@ -1,5 +1,5 @@
 # Dotfiles
-Collections of dotfiles with a simple install script. Installation on fresh machine is preferred.
+Collections of dotfiles with a simple install script. Installation on a fresh machine is preferred.
 
 ## What included
 - zsh + oh-my-zsh
