@@ -1,77 +1,33 @@
-""""""""""""
-" Settings
-""""""""""""
+""""""""""""""""""""""""""
+" # IDEA Settings
+""""""""""""""""""""""""""
 set idearefactormode=keep
 set ideajoin
 set relativenumber
 
-""""""""""""
-" Remap leader
-""""""""""""
+""""""""""""""""""""""""""
+" # Remap leader
+""""""""""""""""""""""""""
 let mapleader = " "
 
-""""""""""""
-" Plugins
-""""""""""""
+""""""""""""""""""""""""""
+" # IDEA Plugins
+""""""""""""""""""""""""""
 set easymotion
 set surround
 set multiple-cursors
 set commentary
 
-""""""""""""
-" Shortcuts
-""""""""""""
-
-" Disabling things
+""""""""""""""""""""""""""
+" # General VIM shortcuts
+""""""""""""""""""""""""""
+" ## Disabling things
 noremap <Up> <nop>
 noremap <Down> <nop>
 noremap <Left> <nop>
 noremap <Right> <nop>
 
-" Alias for exiting
-" noremap <Esc> <nop>
-" vnoremap jk <ESC>
-inoremap jk <ESC>
-
-" New line on Enter/Shift-Enter
-nmap <S-CR> O<Esc>
-nmap <CR> o<Esc>
-
-" Swapping lines [Normal mode]
-" nnoremap <C-j> :m +1<CR>
-" nnoremap <C-k> :m -2<CR>
-nnoremap <C-k> :action MoveStatementUp<CR>
-nnoremap <C-j> :action MoveStatementDown<CR>
-
-" Swapping lines [Insert mode]
-inoremap <C-j> <Esc>:m +1<CR>gi
-inoremap <C-k> <Esc>:m -2<CR>gi
-
-" Navigation with tabs
-nmap <S-j> :action PreviousTab<CR>
-nmap <S-k> :action NextTab<CR>
-
-" History & Control(Browser-like)
-nmap <C-h> :action RecentFiles<CR>
-nmap <leader><leader> :action Switcher<CR>
-
-" Navigation (Browser-like)
-nnoremap F :action AceAction<cr>
-nmap <S-h> :action Back<CR>
-nmap <S-l> :action Forward<CR>
-
-" Navigation (GoTo)
-nnoremap gd :action GotoDeclaration<CR>
-nnoremap gi :action GotoImplementation<CR>
-nnoremap gs :action GotoSuperMethod<CR>
-nnoremap gT :action GotoTest<CR>
-nnoremap gt :action GotoTypeDeclaration<CR>
-
-" Previous/Next method
-nnoremap [m :action MethodUp<CR>
-nnoremap ]m :action MethodDown<CR>
-
-" System clipboard
+" ## System clipboard
 vmap <leader>y "+y
 vmap <leader>d "+d
 nmap <leader>y "+yy
@@ -80,32 +36,86 @@ nmap <leader>P "+P
 vmap <leader>p "+p
 vmap <leader>P "+P
 
-" Insert space before/after in normal mode
-"nnoremap <leader>[ i<space><esc>l
-"nnoremap <leader>] a<space><esc>h
+" ## Alias for exiting
+" noremap <Esc> <nop>
+" vnoremap jk <ESC>
+inoremap jk <ESC>
 
-" Miscellaneous
-nmap <leader>r :action $Redo<CR>
+""""""""""""""""""""""""""
+" # IDEA shortcuts
+""""""""""""""""""""""""""
+" ## Miscellaneous
+" ### New line on Enter/Shift-Enter
+nmap <S-CR> O<Esc>
+nmap <CR> o<Esc>
+
+" ### Show
+" Hierarchy
+nmap <leader>sh :action TypeHierarchy<CR>
+" Format
+nmap <leader>sf :action ShowReformatFileDialog<CR>
+" Editor
+nmap <leader>se :action HideAllWindows<CR>
+
+" ### Control
+nmap <leader>u :action $Redo<CR>
 nmap <leader>k :action Vcs.QuickListPopupAction<CR>
 nmap <leader>a :action GotoAction<CR>
 nmap <leader>f :action ReformatCode<CR>
+nmap <leader>r :action IdeaVim.ReloadVimRc.reload<CR>
+nmap <leader>e :action VimActions<CR>
 
-" Close
+" ### Close
 nmap <leader>x :action CloseContent<CR>
 nmap <leader>ca :action CloseAllEditors<CR>
 nmap <leader>co :action CloseAllEditorsButActive<CR>
 nmap <leader>cl :action CloseAllToTheLeft<CR>
 nmap <leader>cr :action CloseAllToTheRight<CR>
 
-" Show
-nmap <leader>sh :action TypeHierarchy<CR>
-nmap <leader>sf :action ShowReformatFileDialog<CR>
+" ## Navigation
+" For Browser-like navigation check vimium extension for Chrome
+" ### Navigation (Browser-like)
+nmap <S-j> :action PreviousTab<CR>
+nmap <S-k> :action NextTab<CR>
+nnoremap F :action AceAction<cr>
+nmap <S-h> :action Back<CR>
+nmap <S-l> :action Forward<CR>
 
-" Hide
-nmap <leader>hw :action HideAllWindows<CR>
+" ### History & Control (Browser-like)
+nmap <C-h> :action RecentFiles<CR>
+nmap <leader><leader> :action Switcher<CR>
 
-" Split
+" ### Navigation (GO TO ...)
+" Declaration
+nnoremap gtd :action GotoDeclaration<CR>
+" Implementation
+nnoremap gti :action GotoImplementation<CR>
+" Super
+nnoremap gts :action GotoSuperMethod<CR>
+" Test
+nnoremap gtt :action GotoTest<CR>
+" Return Type
+nnoremap gtrt :action GotoTypeDeclaration<CR>
+" Next method
+nnoremap gtnm :action MethodDown<CR>
+" Previous method
+nnoremap gtpm :action MethodUp<CR>
+
+" ### Split
+" Down
 nmap <leader>sd :action SplitHorizontally<CR>
+" Right
 nmap <leader>sr :action SplitVertically<CR>
-nmap <leader>] :action NextSplitter<CR>
-nmap <leader>[ :action PrevSplitter<CR>
+nmap <leader>l :action NextSplitter<CR>
+nmap <leader>h :action PrevSplitter<CR>
+
+" ## Other
+" ### Swapping lines [Normal mode]
+" nnoremap <C-j> :m +1<CR>
+" nnoremap <C-k> :m -2<CR>
+nnoremap <C-k> :action MoveStatementUp<CR>
+nnoremap <C-j> :action MoveStatementDown<CR>
+
+" ### Swapping lines [Insert mode]
+inoremap <C-j> <Esc>:m +1<CR>gi
+inoremap <C-k> <Esc>:m -2<CR>gi
