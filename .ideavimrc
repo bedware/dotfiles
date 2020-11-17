@@ -39,7 +39,7 @@ vmap <leader>P "+P
 " ## Alias for exiting
 " noremap <Esc> <nop>
 " vnoremap jk <ESC>
-inoremap jk <ESC>
+" inoremap jk <ESC>
 
 """"""""""""""""""""""""""
 " # IDEA shortcuts
