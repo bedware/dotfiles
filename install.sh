@@ -99,12 +99,12 @@ post_step() {
 # Combine all together
 main() {
     preparing_step
-    install zsh oh_my_zsh starship
+    install dotfiles
+    install zsh oh_my_zsh starship neovim
     # If --fast arg exists don't install stuff below
-    if [[ -z `echo $* | grep -- --fast` ]]; then
+    if [[ -n `echo $* | grep -- --fast` ]]; then
         install brew utils 
     fi
-    install dotfiles 
     post_step
 }
 # Run it
