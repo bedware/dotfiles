@@ -1,6 +1,8 @@
 #!/bin/bash
 
-enable_colors() {
+preparing_step() {
+    log "Preparing to install"
+    # Setting up colors
 	# Only use colors if connected to a terminal
 	if [ -t 1 ]; then
 		RED=$(printf '\033[31m')
@@ -17,81 +19,81 @@ enable_colors() {
 		BOLD=""
 		RESET=""
 	fi
+    # Updating indexes
+    sudo apt update
 }
-
 log() {
+    # Colorfull log function
     echo ${RED}"$@"${RESET}
 }
 
-setup_dotfiles() {
+install() {
+    for name in $@; do
+        eval install_$name
+    done
+}
+install_zsh() {
+    log "Installing zsh"
+    sudo apt install -y zsh
+    log "Changing default shell to zsh"
+    sudo chsh $USER -s $(which zsh)
+}
+install_oh_my_zsh() {
+    log "Installing oh-my-zsh"
+    curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | bash -s -- --unattended --keep-zshrc
+}
+install_starship() {
+    log "Installing Starship"
+    curl -fsSL https://starship.rs/install.sh | bash -s -- -y
+    echo 'eval "$(starship init zsh)"' >> ~/.zshrc
+}
+install_brew() {
+    log "Installing Brew"
+    curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh | bash
+    echo 'eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)' >> /home/$USER/.zprofile
+    eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+    sudo apt install build-essential -y
+}
+install_utils() {
+    log "Installing Utils"
+    brew install exa tldr hub
+    sudo apt install jq -y
+}
+install_neovim() {
+    log "Installing Neovim"
+    log "Skipping..."
+}
+install_dotfiles() {
     log "Installing Dotfiles"
-    cd ~
+    cd $HOME
     rm .zshrc .oh-my-zsh/custom/example.zsh
     git init && \
     git remote add origin https://github.com/bedware/dotfiles.git && \
     git pull origin master
     SSH_INSTALL=yes
     printf "${YELLOW}Do you want to skip ssh keys installation? [Y/n]${RESET} "
-	read o
-	case $o in
-		y*|Y*|"") echo "Going to next step..."; SSH_INSTALL=no ;;
-		n*|N*) echo "Ssh keys are going to install" ;;
-		*) echo "Invalid choice. Ssh keys installation will be skipped."; SSH_INSTALL=no ;;
-	esac
+    read o
+    case $o in
+        y*|Y*|"") echo "Going to next step..."; SSH_INSTALL=no ;;
+        n*|N*) echo "Ssh keys are going to install" ;;
+        *) echo "Invalid choice. Ssh keys installation will be skipped."; SSH_INSTALL=no ;;
+    esac
     if [ $SSH_INSTALL = yes ]; then
         git submodule update --init -j 2 && \
         chmod 0600 .ssh/id_*
     fi
 }
 
-install_zsh() {
-    log "Installing zsh"
-    sudo apt install -y zsh
-}
-
-install_oh_my_zsh() {
-    log "Installing oh-my-zsh"
-    curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | bash -s -- --unattended --keep-zshrc
-}
-
-install_starship() {
-    log "Installing Starship"
-    curl -fsSL https://starship.rs/install.sh | bash -s -- -y
-    echo 'eval "$(starship init zsh)"' >> ~/.zshrc
-}
-
-install_brew() {
-    curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh | bash
-    echo 'eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)' >> /home/$USER/.zprofile
-    eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
-    sudo apt update
-    sudo apt install build-essential -y
-}
-
-install_utils() {
-    brew install exa tldr hub
-    sudo apt install jq -y
-}
-
-setup_default_shell() {
-    log "Settings zsh default shell"
-    sudo chsh $USER -s $(which zsh)
-}
-
 post_step() {
     log "Setup complete! Please relogin."
 }
 
+# Combine all together
 main() {
-    enable_colors
-    install_zsh
-    install_oh_my_zsh
-    install_starship
-    setup_dotfiles
-    install_brew
-    install_utils
-    setup_default_shell
+    preparing_step
+    install zsh oh_my_zsh starship brew utils 
+    install dotfiles 
     post_step
 }
-
-main "$@"
+# Run it
+main
