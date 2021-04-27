@@ -49,7 +49,7 @@ install_starship() {
 }
 install_neovim() {
     log "Installing Neovim"
-    sudo apt install neovim
+    sudo apt install -y neovim
     mkdir -p ~/.config/nvim/plugin
     mkdir -p ~/.config/nvim/after/plugin
     mkdir -p ~/.config/nvim/lua
@@ -101,7 +101,7 @@ main() {
     preparing_step
     install zsh oh_my_zsh starship neovim
     # If --fast arg exists don't install stuff below
-    if [[ -n `echo $* | grep -- --fast` ]]; then
+    if [[ -z `echo $* | grep -- --fat` ]]; then
         install brew utils 
     fi
     install dotfiles
