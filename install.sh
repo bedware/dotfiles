@@ -75,8 +75,9 @@ install_dotfiles() {
     git remote add origin https://github.com/bedware/dotfiles.git && \
     git pull origin master
     log "Installing VimPlug"
-    curl -fsSLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    echo "Installing VimPlug plugins..."
+    sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+    log "Installing VimPlug plugins..."
     nvim --headless +PlugInstall +qa 2>&1
     SSH_INSTALL=yes
     printf "${YELLOW}Do you want to skip ssh keys installation? [Y/n]${RESET} "
