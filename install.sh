@@ -102,9 +102,9 @@ main() {
     preparing_step
     install zsh oh_my_zsh starship neovim
     # If --fast arg exists don't install stuff below
-    if [[ -z `echo $* | grep -- --fat` ]]; then
-        install brew utils 
-    fi
+    #if [[ -z `echo $* | grep -- --fat` ]]; then
+    #    install brew utils 
+    #fi
     install dotfiles
     post_step
 }
