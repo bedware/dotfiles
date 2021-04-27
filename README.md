@@ -11,17 +11,16 @@ Collections of dotfiles with a simple install script. Installation on a fresh ma
     - jq
     - exa
     - tldr
-- (Optional) ssh keys installation (need to change .gitmodule)
+- (Optional) ssh keys installation
 
 ## Requirements
 - git 2.14.6+
-- vim 8.2+
 
 ## Tested on
-- Ubuntu 18.04
+- Ubuntu 20.04
 
 ## Installation
 Run in console and follow instructions:
 ```
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/bedware/dotfiles/master/install.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/bedware/dotfiles/master/install.sh)"
 ```

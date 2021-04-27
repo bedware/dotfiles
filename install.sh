@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 preparing_step() {
     log "Preparing to install"
@@ -47,6 +47,18 @@ install_starship() {
     curl -fsSL https://starship.rs/install.sh | bash -s -- -y
     echo 'eval "$(starship init zsh)"' >> ~/.zshrc
 }
+install_neovim() {
+    log "Installing Neovim"
+    sudo apt install neovim
+    mkdir -p ~/.config/nvim/plugin
+    mkdir -p ~/.config/nvim/after/plugin
+    mkdir -p ~/.config/nvim/lua
+    mkdir -p ~/.vim/undodir
+    log "Installing VimPlug"
+    curl -fsSLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    echo "Installing VimPlug plugins..."
+    nvim --headless +PlugInstall +qa 2>&1
+}
 install_brew() {
     log "Installing Brew"
     curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh | bash
@@ -58,10 +70,6 @@ install_utils() {
     log "Installing Utils"
     brew install exa tldr hub
     sudo apt install jq -y
-}
-install_neovim() {
-    log "Installing Neovim"
-    log "Skipping..."
 }
 install_dotfiles() {
     log "Installing Dotfiles"
@@ -75,8 +83,8 @@ install_dotfiles() {
     read o
     case $o in
         y*|Y*|"") echo "Going to next step..."; SSH_INSTALL=no ;;
-        n*|N*) echo "Ssh keys are going to install" ;;
-        *) echo "Invalid choice. Ssh keys installation will be skipped."; SSH_INSTALL=no ;;
+        n*|N*) echo "SSH keys are going to install" ;;
+        *) echo "Invalid choice. SSH keys installation will be skipped."; SSH_INSTALL=no ;;
     esac
     if [ $SSH_INSTALL = yes ]; then
         git submodule update --init -j 2 && \
@@ -91,7 +99,11 @@ post_step() {
 # Combine all together
 main() {
     preparing_step
-    install zsh oh_my_zsh starship brew utils 
+    install zsh oh_my_zsh starship
+    # If --fast arg exists don't install stuff below
+    if [[ -z `echo $* | grep -- --fast` ]]; then
+        install brew utils 
+    fi
     install dotfiles 
     post_step
 }

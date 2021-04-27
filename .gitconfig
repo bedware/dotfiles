@@ -1,4 +1,4 @@
 [core]
-	excludesfile = .gitignore_global
+	excludesfile = ~/.config/git/.gitignore
 [include]
-	path = .gitconfig_local
+	path = ~/.config/git/.gitconfig
