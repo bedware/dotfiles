@@ -54,10 +54,6 @@ install_neovim() {
     mkdir -p ~/.config/nvim/after/plugin
     mkdir -p ~/.config/nvim/lua
     mkdir -p ~/.vim/undodir
-    log "Installing VimPlug"
-    curl -fsSLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    echo "Installing VimPlug plugins..."
-    nvim --headless +PlugInstall +qa 2>&1
 }
 install_brew() {
     log "Installing Brew"
@@ -78,6 +74,10 @@ install_dotfiles() {
     git init && \
     git remote add origin https://github.com/bedware/dotfiles.git && \
     git pull origin master
+    log "Installing VimPlug"
+    curl -fsSLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    echo "Installing VimPlug plugins..."
+    nvim --headless +PlugInstall +qa 2>&1
     SSH_INSTALL=yes
     printf "${YELLOW}Do you want to skip ssh keys installation? [Y/n]${RESET} "
     read o
@@ -99,12 +99,12 @@ post_step() {
 # Combine all together
 main() {
     preparing_step
-    install dotfiles
     install zsh oh_my_zsh starship neovim
     # If --fast arg exists don't install stuff below
     if [[ -n `echo $* | grep -- --fast` ]]; then
         install brew utils 
     fi
+    install dotfiles
     post_step
 }
 # Run it
