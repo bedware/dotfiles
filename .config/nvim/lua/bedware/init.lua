@@ -1,8 +1,8 @@
-require("theprimeagen.telescope")
-require("theprimeagen.git-worktree")
-require("theprimeagen.harpoon")
-require("theprimeagen.lsp")
-require("theprimeagen.statusline")
+require("bedware.telescope")
+require("bedware.git-worktree")
+require("bedware.harpoon")
+require("bedware.lsp")
+require("bedware.statusline")
 
 P = function(v)
   print(vim.inspect(v))

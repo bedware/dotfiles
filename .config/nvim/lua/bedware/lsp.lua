@@ -1,4 +1,4 @@
-local sumneko_root_path = '/home/theprimeagen/personal/lua-language-server'
+local sumneko_root_path = '/home/bedware/personal/lua-language-server'
 local sumneko_binary = sumneko_root_path .. "/bin/Linux/lua-language-server"
 
 local function on_attach()
