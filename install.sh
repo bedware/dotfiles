@@ -81,7 +81,7 @@ install_dotfiles() {
     sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
     log "Installing VimPlug plugins..."
-    nvim --headless +PlugInstall +qa 2>&1
+    nvim --headless +PlugInstall +qa 2>&1 | sed -e '/Error detected while processing/d' -e '/line\s\+[0-9]\+:/d' -e '/E185:/d'
     SSH_INSTALL=yes
     printf "${YELLOW}Do you want to skip ssh keys installation? [Y/n]${RESET} "
     read o
