@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+log() {
+    # Colorfull log function
+    echo ${RED}"$@"${RESET}
+}
 preparing_step() {
     log "Preparing to install"
     # Setting up colors
@@ -21,10 +25,6 @@ preparing_step() {
 	fi
     # Updating indexes
     sudo apt update
-}
-log() {
-    # Colorfull log function
-    echo ${RED}"$@"${RESET}
 }
 
 install() {
@@ -49,7 +49,10 @@ install_starship() {
 }
 install_neovim() {
     log "Installing Neovim"
-    sudo apt install -y neovim
+    # sudo apt install -y neovim
+    wget https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
+    chmod u+x nvim.appimage
+    sudo mv ./nvim.appimage /usr/bin/nvim
     mkdir -p ~/.config/nvim/plugin
     mkdir -p ~/.config/nvim/after/plugin
     mkdir -p ~/.config/nvim/lua
@@ -64,7 +67,7 @@ install_brew() {
 }
 install_utils() {
     log "Installing Utils"
-    brew install exa tldr hub
+    brew install exa tldr hub clang
     sudo apt install jq -y
 }
 install_dotfiles() {
@@ -102,9 +105,9 @@ main() {
     preparing_step
     install zsh oh_my_zsh starship neovim
     # If --fast arg exists don't install stuff below
-    #if [[ -z `echo $* | grep -- --fat` ]]; then
-    #    install brew utils 
-    #fi
+    if [[ -n `echo $* | grep -- --fat` ]]; then
+       install brew utils
+    fi
     install dotfiles
     post_step
 }
