@@ -30,9 +30,9 @@ noremap <Right> <nop>
 " ## System clipboard
 vmap <leader>y "+y
 vmap <leader>d "+d
-nmap <leader>y "+yy
-nmap <leader>p "+p
-nmap <leader>P "+P
+nnoremap <leader>y "+yy
+nnoremap <leader>p "+p
+nnoremap <leader>P "+P
 vmap <leader>p "+p
 vmap <leader>P "+P
 
@@ -46,44 +46,46 @@ vmap <leader>P "+P
 """"""""""""""""""""""""""
 " ## Miscellaneous
 " ### New line on Enter/Shift-Enter
-nmap <S-CR> O<Esc>
-nmap <CR> o<Esc>
+nnoremap <S-CR> O<Esc>
+nnoremap <CR> o<Esc>
 
 " ### Show
 " Hierarchy
-nmap <leader>sh :action TypeHierarchy<CR>
+nnoremap <leader>sh :action TypeHierarchy<CR>
 " Format
-nmap <leader>sf :action ShowReformatFileDialog<CR>
+" nnoremap <leader>sf :action ShowReformatFileDialog<CR>
 " Editor
-nmap <leader>se :action HideAllWindows<CR>
+nnoremap <leader>se :action HideAllWindows<CR>
+" ByteCode
+nnoremap <leader>sb :action ByteCodeViewer<CR>
 
 " ### Control
-nmap <leader>u :action $Redo<CR>
-nmap <leader>k :action Vcs.QuickListPopupAction<CR>
-nmap <leader>a :action GotoAction<CR>
-nmap <leader>f :action ReformatCode<CR>
-nmap <leader>r :action IdeaVim.ReloadVimRc.reload<CR>
-nmap <leader>e :action VimActions<CR>
+nnoremap <leader>u :action $Redo<CR>
+nnoremap <leader>k :action Vcs.QuickListPopupAction<CR>
+nnoremap <leader>a :action GotoAction<CR>
+nnoremap <leader>f :action ReformatCode<CR>
+nnoremap <leader>r :action IdeaVim.ReloadVimRc.reload<CR>
+nnoremap <leader>e :action VimActions<CR>
 
 " ### Close
-nmap <leader>x :action CloseContent<CR>
-nmap <leader>ca :action CloseAllEditors<CR>
-nmap <leader>co :action CloseAllEditorsButActive<CR>
-nmap <leader>cl :action CloseAllToTheLeft<CR>
-nmap <leader>cr :action CloseAllToTheRight<CR>
+nnoremap <leader>x :action CloseContent<CR>
+nnoremap <leader>ca :action CloseAllEditors<CR>
+nnoremap <leader>co :action CloseAllEditorsButActive<CR>
+nnoremap <leader>cl :action CloseAllToTheLeft<CR>
+nnoremap <leader>cr :action CloseAllToTheRight<CR>
 
 " ## Navigation
-" For Browser-like navigation check vimium extension for Chrome
+" For Browser-like navigation check Vimium extension for Chrome
 " ### Navigation (Browser-like)
-nmap <S-j> :action PreviousTab<CR>
-nmap <S-k> :action NextTab<CR>
-nnoremap F :action AceAction<cr>
-nmap <S-h> :action Back<CR>
-nmap <S-l> :action Forward<CR>
+nnoremap <S-j> :action PreviousTab<CR>
+nnoremap <S-k> :action NextTab<CR>
+" nnoremap F :action AceAction<cr>
+nnoremap <S-h> :action Back<CR>
+nnoremap <S-l> :action Forward<CR>
 
 " ### History & Control (Browser-like)
-nmap <C-h> :action RecentFiles<CR>
-nmap <leader><leader> :action Switcher<CR>
+nnoremap <C-h> :action RecentFiles<CR>
+nnoremap <leader><leader> :action Switcher<CR>
 
 " ### Navigation (GO TO ...)
 " Declaration
@@ -103,11 +105,11 @@ nnoremap gtpm :action MethodUp<CR>
 
 " ### Split
 " Down
-nmap <leader>sd :action SplitHorizontally<CR>
+nnoremap <leader>sd :action SplitHorizontally<CR>
 " Right
-nmap <leader>sr :action SplitVertically<CR>
-nmap <leader>l :action NextSplitter<CR>
-nmap <leader>h :action PrevSplitter<CR>
+nnoremap <leader>sr :action SplitVertically<CR>
+nnoremap <leader>l :action NextSplitter<CR>
+nnoremap <leader>h :action PrevSplitter<CR>
 
 " ## Other
 " ### Swapping lines [Normal mode]

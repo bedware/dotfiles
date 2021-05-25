@@ -100,3 +100,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Starship prompt inintializer
 eval "$(starship init zsh)"
+
+# Setup Remote Display
+export LIBGL_ALWAYS_INDIRECT=1
+export DISPLAY="`grep nameserver /etc/resolv.conf | sed 's/nameserver //'`:0"
