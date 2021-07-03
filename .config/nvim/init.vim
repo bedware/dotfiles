@@ -6,6 +6,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-dispatch'
 Plug 'mbbill/undotree'
+Plug 'adelarsq/vim-matchit'
 
 Plug 'nvim-lua/plenary.nvim'
 Plug 'ThePrimeagen/git-worktree.nvim'
